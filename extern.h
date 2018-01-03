@@ -6,7 +6,8 @@
 
 namespace dfcls
 {
-	extern std::string LogDirectory;
+	extern std::string	LogDirectory;
+	extern bool		WriteLog;
 }
 
 #endif
