@@ -29,7 +29,7 @@ bool LogProcess::init()
 	return true;
 }
 
-void write(string type, string message)
+void LogProcess::write(string type, string message)
 {
 	ofstream ofs(filename, ios_base::out | ios_base::app);
 	if(ofs.fail())
