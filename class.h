@@ -9,12 +9,11 @@ namespace dfcls
 	class LogProcess
 	{
 	public:
-		LogProcess();
 		bool init();
 		void write(std::string type, std::string message);
 
 	private:
-		std::string filename;
+		static std::string filename;
 	};
 }
 
