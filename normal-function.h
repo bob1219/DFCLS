@@ -1,8 +1,9 @@
 #ifndef _NORMAL_FUNCTION_H_
 #define _NORMAL_FUNCTION_H_
 
-// Standard Library
+// Standard Libraries
 #include <iostream>
+#include <string>
 
 // Headers
 #include "class.h"
@@ -13,6 +14,7 @@ namespace dfcls
 {
 	bool prepering();
 	void CommandLine();
+	bool CommandProcess(std::string command);
 
 	inline void welcome()
 	{
