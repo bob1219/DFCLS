@@ -1,13 +1,15 @@
 // Standard Library
-#include <const string &>
+#include <string>
 #include <direct.h>
 #include <cstdio>
 #include <fstream>
 #include <iostream>
+#include <cstddef>
 
 // Header
 #include "class.h"
 #include "extern.h"
+#include "constant.h"
 
 using namespace dfcls;
 using namespace std;
@@ -151,6 +153,35 @@ rfile_error:
 	{
 		LogProcess log;
 		log.write("error", "Failed remove a file");
+	}
+	return false;
+}
+
+bool command::cfile(int CommandNumber, const string &from, const string &to)
+{
+	if(CommandNumber < 3)goto cfile_error;
+
+	ifstream ifs(from, ios_base::in | ios_base::binary);
+	ofstream ofs(to, ios_base::out | ios_base::binary);
+	if(ifs.fail() || ofs.fail())
+		goto cfile_error;
+
+	char	buf[FILE_SIZE_MAX];
+	size_t	byte = ifs.read(buf, (sizeof(buf) / sizeof(char))).gcout();
+	ofs.write(buf, byte);
+
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("info", "Copied file \"" + from + "\" -> \"" + to + "\"");
+	}
+	return true;
+
+cfile_error:
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("error", "Failed copy file");
 	}
 	return false;
 }
