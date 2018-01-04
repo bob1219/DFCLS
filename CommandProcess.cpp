@@ -11,7 +11,7 @@
 using namespace std;
 using namespace dfcls;
 
-bool CommandProcess(string command)
+bool CommandProcess(const string &command)
 {
 	char commands_c[COMMAND_NUMBER_MAX][COMMAND_MAX];
 	char format[FORMAT_MAX];

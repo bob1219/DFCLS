@@ -10,7 +10,7 @@ namespace dfcls
 	{
 	public:
 		bool init();
-		void write(std::string type, std::string message);
+		void write(const std::string &type, const std::string &message);
 
 	private:
 		static std::string filename;

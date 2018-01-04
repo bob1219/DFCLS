@@ -1,5 +1,5 @@
 // Standard Library
-#include <string>
+#include <const string &>
 #include <direct.h>
 #include <cstdio>
 #include <fstream>
@@ -12,7 +12,7 @@
 using namespace dfcls;
 using namespace std;
 
-bool command::mdir(int CommandNumber, string dirname)
+bool command::mdir(int CommandNumber, const string &dirname)
 {
 	if(CommandNumber < 2)goto mdir_error;
 
@@ -36,7 +36,7 @@ mdir_error:
 	return false;
 }
 
-bool command::rdir(int CommandNumber, string dirname)
+bool command::rdir(int CommandNumber, const string &dirname)
 {
 	if(CommandNumber < 2)goto rdir_error;
 
@@ -60,7 +60,7 @@ rdir_error:
 	return false;
 }
 
-bool command::chdir(int CommandNumber, string dirname)
+bool command::chdir(int CommandNumber, const string &dirname)
 {
 	if(CommandNumber < 2)goto chdir_error;
 
@@ -108,7 +108,7 @@ cwdir_error:
 	return false;
 }
 
-bool command::mfile(int CommandNumber, string filename)
+bool command::mfile(int CommandNumber, const string &filename)
 {
 	if(CommandNumber < 2)goto mfile_error;
 
@@ -131,7 +131,7 @@ mfile_error:
 	return false;
 }
 
-bool command::rfile(int CommandNumber, string filename)
+bool command::rfile(int CommandNumber, const string &filename)
 {
 	if(CommandNumber < 2)goto rfile_error;
 
