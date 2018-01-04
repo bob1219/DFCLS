@@ -1,6 +1,7 @@
 // Standard Libraries
 #include <string>
 #include <direct.h>
+#include <cstdio>
 
 // Header
 #include "class.h"
@@ -59,5 +60,23 @@ bool command::chdir(int CommandNumber, string dirname)
 chdir_error:
 	LogProcess log;
 	log.write("error", "Failed change current working directory");
+	return false;
+}
+
+bool command::cwdir()
+{
+	char buf[FILENAME_MAX];
+	if(getcwd(buf, (sizeof(buf) / sizeof(char))))
+	{
+		cout << "Current Working Directory: " << buf << endl;
+		LogProcess log;
+		log.write("info", "Succeeded get current working directory");
+		return true;
+	}
+	else goto cwdir_error;
+
+cwdir_error:
+	LogProcess log;
+	log.write("error", "Failed get current working directory");
 	return false;
 }
