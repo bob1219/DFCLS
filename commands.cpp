@@ -43,3 +43,21 @@ rdir_error:
 	log.write("error", "Failed remove a directory");
 	return false;
 }
+
+bool command::chdir(int CommandNumber, string dirname)
+{
+	if(CommandNumber < 2)goto chdir_error;
+
+	if(!_chdir(dirname))
+	{
+		LogProcess log;
+		log.write("info", "Changed current working directory to \"" + dirname + "\"");
+		return true;
+	}
+	else goto chdir_error;
+
+chdir_error:
+	LogProcess log;
+	log.write("error", "Failed change current working directory");
+	return false;
+}
