@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <cstddef>
+#include <dirent.h>
 
 // Header
 #include "class.h"
@@ -182,6 +183,35 @@ cfile_error:
 	{
 		LogProcess log;
 		log.write("error", "Failed copy file");
+	}
+	return false;
+}
+
+bool command::lfile(int CommandNumber, const string &dirname)
+{
+	if(CommandNumber < 2)goto lfile_error;
+
+	DIR *dp = opendir(dirname);
+	if(!dp)goto lfile_error;
+
+	struct dirent *d;
+	while(d = readdir(dp))
+		cout << d->d_name << endl;
+
+	closedir(dp);
+	
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("info", "Printed list of files in directory \"" + dirname + "\"");
+	}
+	return true;
+
+lfile_error:
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("error", "Failed print list of files in directory");
 	}
 	return false;
 }
