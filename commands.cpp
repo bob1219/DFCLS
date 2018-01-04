@@ -25,3 +25,21 @@ mdir_error:
 	log.write("error", "Failed make a directory");
 	return false;
 }
+
+bool command::rdir(int CommandNumber, string dirname)
+{
+	if(CommandNumber < 2)goto rdir_error;
+
+	if(!_rmdir(dirname.c_str()))
+	{
+		LogProcess log;
+		log.write("info", "Removed a directory \"" + dirname + "\"");
+		return true;
+	}
+	else goto rdir_error;
+
+rdir_error:
+	LogProcess log;
+	log.write("error", "Failed remove a directory");
+	return false;
+}
