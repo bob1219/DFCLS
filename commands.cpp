@@ -1,11 +1,11 @@
-// Standard Libraries
+// Standard Library
 #include <string>
 #include <direct.h>
 #include <cstdio>
 #include <fstream>
 #include <iostream>
 
-// Headers
+// Header
 #include "class.h"
 #include "extern.h"
 

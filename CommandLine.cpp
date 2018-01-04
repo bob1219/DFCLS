@@ -1,4 +1,4 @@
-// Standard Libraries
+// Standard Library
 #include <string>
 #include <iostream>
 

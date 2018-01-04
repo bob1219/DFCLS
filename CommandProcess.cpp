@@ -1,10 +1,10 @@
-// Standard Libraries
+// Standard Library
 #include <string>
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
 
-// Headers
+// Header
 #include "constant.h"
 #include "command-function.h"
 

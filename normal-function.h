@@ -1,11 +1,11 @@
 #ifndef _NORMAL_FUNCTION_H_
 #define _NORMAL_FUNCTION_H_
 
-// Standard Libraries
+// Standard Library
 #include <iostream>
 #include <string>
 
-// Headers
+// Header
 #include "class.h"
 #include "constant.h"
 #include "extern.h"
