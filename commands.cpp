@@ -130,3 +130,27 @@ mfile_error:
 	}
 	return false;
 }
+
+bool command::rfile(int CommandNumber, string filename)
+{
+	if(CommandNumber < 2)goto rfile_error;
+
+	if(!remove(filename))
+	{
+		if(WriteLog)
+		{
+			LogProcess log;
+			log.write("info", "Removed a file \"" + filename + "\"");
+		}
+		return true;
+	}
+	else goto rfile_error;
+
+rfile_error:
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("error", "Failed remove a file");
+	}
+	return false;
+}
