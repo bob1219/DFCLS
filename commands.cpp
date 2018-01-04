@@ -2,6 +2,8 @@
 #include <string>
 #include <direct.h>
 #include <cstdio>
+#include <fstream>
+#include <iostream>
 
 // Headers
 #include "class.h"
@@ -102,6 +104,29 @@ cwdir_error:
 	{
 		LogProcess log;
 		log.write("error", "Failed get current working directory");
+	}
+	return false;
+}
+
+bool command::mfile(int CommandNumber, string filename)
+{
+	if(CommandNumber < 2)goto mfile_error;
+
+	fstream fs(filename, ios_base::trunc);
+	if(fs.fail())goto mfile_error;
+
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("info", "Made a file \"" + filename "\"");
+	}
+	return true;
+
+mfile_error:
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("error", "Failed make a file");
 	}
 	return false;
 }
