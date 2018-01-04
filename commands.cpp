@@ -215,3 +215,27 @@ lfile_error:
 	}
 	return false;
 }
+
+bool command::rename(int CommandNumber, const string &oldname, const string &newname)
+{
+	if(CommandNumber < 3)goto rename_error;
+
+	if(!rename(oldname, newname))
+	{
+		if(WriteLog)
+		{
+			LogProcess log;
+			log.write("info", "Renamed file \"" + oldname + "\" -> \"" + newname + "\"");
+		}
+		return true;
+	}
+	else goto rename_error;
+
+rename_error:
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("error", "Failed rename file");
+	}
+	return false;
+}
