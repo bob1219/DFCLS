@@ -270,3 +270,32 @@ tview_error:
 	}
 	return false;
 }
+
+bool command::bview(int CommandNumber, const string &filename)
+{
+	if(CommandNumber < 2)goto bview_error;
+
+	ifstream ifs(filename, ios_base::in | ios_base::binary);
+	if(ifs.fail())goto bview_error;
+
+	char buf[FILE_SIZE_MAX];
+	size_t byte = ifs.read(buf, (sizeof(buf) / sizeof(char))).gcount();
+
+	for(unsigned int i = 0 ; i < byte ; i++)
+		printf("%02X", buf[i]);
+
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("info", "Printed contents of file \"" + filename + "\" in binary");
+	}
+	return true;
+
+bview_error:
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("error", "Failed print contents of file in binary");
+	}
+	return false;
+}
