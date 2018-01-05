@@ -426,3 +426,90 @@ bool command::time()
 	printf("%02d:%02d:%d", local->tm_hour, local->tm_min, local->tm_sec);
 	return true;
 }
+
+bool command::now()
+{
+	time_t		timer	= time(NULL);
+	struct tm	*local	= localtime(&timer);
+
+	string month;
+	switch(local->tm_mon)
+	{
+	case 0:
+		month = "January";
+		break;
+
+	case 1:
+		month = "February";
+		break;
+
+	case 2:
+		month = "March";
+		break;
+
+	case 3:
+		month = "April";
+		break;
+
+	case 4:
+		month = "May";
+		break;
+
+	case 5:
+		month = "June";
+		break;
+
+	case 6:
+		month = "July";
+		break;
+
+	case 7:
+		month = "August";
+		break;
+
+	case 8:
+		month = "September";
+		break;
+
+	case 9:
+		month = "October";
+		break;
+
+	case 10:
+		month = "November";
+		break;
+
+	case 11:
+		month = "December";
+		break;
+	}
+
+	char date[DATE_MAX];
+	switch(local->tm_mday)
+	{
+	case 1:
+	case 21:
+	case 31:
+		sprintf(date, "%dst", local->tm_mday);
+		break;
+
+	case 2:
+	case 22:
+		sprintf(date, "%dnd", local->tm_mday);
+		break;
+
+	case 3:
+	case 23:
+		sprintf(date, "%drd", local->tm_mday);
+		break;
+
+	default:
+		sprintf(date, "%dth", local->tm_mday);
+		break;
+	}
+
+	printf("%s %s, %d\n", month, date, local->tm_year + 1900);
+	printf("%02d:%02d:%02d", local->tm_hour, local->tm_min, local->tm_sec);
+
+	return true;
+}
