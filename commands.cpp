@@ -417,3 +417,12 @@ bool command::date()
 	cout << month << " " << date << ", " << local->tm_year + 1900 << endl;
 	return true;
 }
+
+bool command::time()
+{
+	time_t		timer	= time(NULL);
+	struct tm	*local	= localtime(&timer);
+
+	printf("%02d:%02d:%d", local->tm_hour, local->tm_min, local->tm_sec);
+	return true;
+}
