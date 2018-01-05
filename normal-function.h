@@ -18,11 +18,11 @@ namespace dfcls
 
 	inline void welcome()
 	{
-		std::cout << "Welcome to DFCLS version " << VERSION << std::endl;
+		std::cout << "Welcome to DFCLS version " << dfcls::VERSION << std::endl;
 		if(WriteLog)
 		{
 			LogProcess log;
-			log.write("info", "DFCLS version " + VERSION);
+			log.write("info", "DFCLS version " + dfcls::VERSION);
 		}
 	}
 }
