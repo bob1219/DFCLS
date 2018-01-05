@@ -7,6 +7,7 @@
 #include <cstddef>
 #include <filesystem>
 #include <algorithm>
+#include <cstdlib>
 
 // Header
 #include "class.h"
@@ -296,6 +297,37 @@ bview_error:
 	{
 		LogProcess log;
 		log.write("error", "Failed print contents of file in binary");
+	}
+	return false;
+}
+
+bool command::app(int CommandNumber, string *commands)
+{
+	if(CommandNumber < 2 || !system(NULL))goto app_error;
+
+	string command;
+	for(unsigned int i = 1 ; i < CommandNumber ; i++)
+	{
+		if(i == 1)
+			command = commands[1];
+		else
+			command += " " + commands[i];
+	}
+
+	int ret = system(command);
+	cout << "Return value: " << ret << endl;
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("info", "Executed application \"" + commands[1] + "\", Return value is " + to_string(ret));
+	}
+	return true;
+
+app_error:
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("error", "Failed execution application");
 	}
 	return false;
 }
