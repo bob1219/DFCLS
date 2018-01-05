@@ -243,3 +243,30 @@ rename_error:
 	}
 	return false;
 }
+
+bool command::tview(int CommandNumber, const string &filename)
+{
+	if(CommandNumber < 2)goto tview_error;
+
+	ifstream ifs(filename);
+	if(ifs.fail())goto tview_error;
+
+	string line;
+	for(unsigned int i = 1 ; getline(ifs, line) ; i++)
+		cout << i << ":\t" << line << "\n";
+
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("info", "Printed contents of file \"" + filename + "\" in text");
+	}
+	return true;
+
+tview_error:
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("error", "Failed print contents of file in text");
+	}
+	return false;
+}
