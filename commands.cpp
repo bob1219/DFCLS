@@ -5,7 +5,8 @@
 #include <fstream>
 #include <iostream>
 #include <cstddef>
-#include <dirent.h>
+#include <filesystem>
+#include <algorithm>
 
 // Header
 #include "class.h"
@@ -14,6 +15,7 @@
 
 using namespace dfcls;
 using namespace std;
+using namespace std::tr2::sys;
 
 bool command::mdir(int CommandNumber, const string &dirname)
 {
@@ -191,15 +193,17 @@ bool command::lfile(int CommandNumber, const string &dirname)
 {
 	if(CommandNumber < 2)goto lfile_error;
 
-	DIR *dp = opendir(dirname);
-	if(!dp)goto lfile_error;
+	path p(dirname);
+	for_each(directory_iterator(p), directory_iterator(),
+		[](const path &p)
+		{
+			if(is_regular_file(p))
+				cout << "file:\t" << p << endl;
+			else if(is_directory(p))
+				cout << "dir:\t" << p << endl;
+		}
+	);
 
-	struct dirent *d;
-	while(d = readdir(dp))
-		cout << d->d_name << endl;
-
-	closedir(dp);
-	
 	if(WriteLog)
 	{
 		LogProcess log;
