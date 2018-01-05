@@ -3,6 +3,10 @@
 
 // Standard Library
 #include <string>
+#include <iostream>
+
+// Header
+#include "constant.h"
 
 namespace dfcls
 {
@@ -28,10 +32,15 @@ namespace dfcls
 		bool bview(int CommandNumber, const std::string &filename);
 
 		// other
-		bool version();
 		bool app(int CommandNumber, const std::string *commands);
 		bool date();
 		bool time();
 		bool now();
+
+		inline bool version()
+		{
+			std::cout << "DFCLS version " << dfcls::VERSION << std::endl;
+			return true;
+		}
 	}
 }
