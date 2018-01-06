@@ -39,9 +39,5 @@ void LogProcess::write(const string &type, const string &message)
 	// write
 	time_t		timer = time(NULL);
 	struct tm	*local = localtime(&timer);
-	char date[DATE_MAX];
-	sprintf(date, "[%02d/%02d/%04d %02d:%02d:%02d]", local->tm_mon + 1, local->tm_mday, local->tm_year + 1900, local->tm_hour, local->tm_min, local->tm_sec);
-	char _type[LOGTYPE_MAX];
-	sprintf(_type, "[%s]", type);
-	ofs << date << _type << message << "." << endl;
+	printf("[%02d/%02d/%d %02d:%02d:%02d][%s]%s.\n", local->tm_mon + 1, local->tm_mday, local->tm_year + 1900, local->tm_hour, local->tm_min, local->tm_sec, type.c_str(), message.c_str());
 }
