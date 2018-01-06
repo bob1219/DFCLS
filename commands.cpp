@@ -141,7 +141,7 @@ bool command::rfile(int CommandNumber, const string &filename)
 {
 	if(CommandNumber < 2)goto rfile_error;
 
-	if(!remove(filename))
+	if(!remove(filename.c_str()))
 	{
 		if(WriteLog)
 		{
