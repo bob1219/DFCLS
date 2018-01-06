@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdio>
+#include <direct.h>
 
 // Header
 #include "constant.h"
@@ -12,33 +13,42 @@ using namespace std;
 using namespace dfcls;
 
 // Gloval variables
-string	LogDirectory = ".", prompt = ">";
+string	LogDirectory = "", prompt = ">";
 bool	WriteLog = false;
 
 bool prepering()
 {
+	char LogDirectory_c[FILENAME_MAX];
+	if(!_getcwd(LogDirectory_c, (sizeof(LogDirectory_c) / sizeof(char))))
+		return false;
+	LogDirectory = LogDirectory_c;
+
 	char SettingFileName[FILENAME_MAX];
 	sprintf(SettingFileName, ".%cSETTING", PATH_BREAK_CHARACTER);
 	ifstream ifs(SettingFileName);
 	if(ifs.fail())return false;
 
 	string	line;
-	char	SettingName[SETTING_NAME_MAX], SettingContent[SETTING_CONTENT_MAX];
+	string	SettingName, SettingContent;
+	char	SettingName_c[SETTING_NAME_MAX], SettingContent[SETTING_CONTENT_MAX];
 	char	format[FORMAT_MAX];
+	sprintf(format, "%%%u[^=]=%%%us", SETTING_NAME_MAX, SETTING_CONTENT_MAX);
 	while(getline(ifs, line))
 	{
-		sprintf(format, "%%%u[^=]=%%%us", SETTING_NAME_MAX, SETTING_CONTENT_MAX);
-		sscanf(line.c_str(), format, SettingName, SettingContent);
+		sscanf(line.c_str(), format, SettingName_c, SettingContent);
+
+		SettingName	= SettingName_c;
+		SettingContent	= SettingContent_c;
+
 		if(SettingName == "prompt")
 			prompt = SettingContent;
 		else if(SettingName == "LogDirectory")
 			LogDirectory = SettingContent;
 		else if(SettingName == "WriteLog")
 		{
-			string SettingContent_s = SettingContent;
-			if(SettingContent_s == "true")
+			if(SettingContent == "true")
 				WriteLog = true;
-			else if(SettingContent_s == "false")
+			else if(SettingContent == "false")
 				WriteLog = false;
 			else return false;
 		}
