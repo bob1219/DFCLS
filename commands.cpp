@@ -508,7 +508,7 @@ bool command::now()
 	}
 
 	printf("%s %s, %d\n", month, date, local->tm_year + 1900);
-	printf("%02d:%02d:%02d", local->tm_hour, local->tm_min, local->tm_sec);
+	printf("%02d:%02d:%02d\n", local->tm_hour, local->tm_min, local->tm_sec);
 
 	return true;
 }
