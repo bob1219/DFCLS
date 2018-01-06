@@ -93,9 +93,9 @@ chdir_error:
 bool command::cwdir()
 {
 	char buf[FILENAME_MAX];
-	if(getcwd(buf, (sizeof(buf) / sizeof(char))))
+	if(_getcwd(buf, (sizeof(buf) / sizeof(char))))
 	{
-		cout << "Current Working Directory: " << buf << endl;
+		cout << buf << endl;
 		if(WriteLog)
 		{
 			LogProcess log;
