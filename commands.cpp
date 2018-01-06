@@ -7,7 +7,6 @@
 #include <cstddef>
 #include <filesystem>
 #include <algorithm>
-#include <cstdlib>
 #include <ctime>
 
 // Header
@@ -71,7 +70,7 @@ bool command::chdir(int CommandNumber, const string &dirname)
 {
 	if(CommandNumber < 2)goto chdir_error;
 
-	if(!_chdir(dirname))
+	if(!_chdir(dirname.c_str()))
 	{
 		if(WriteLog)
 		{
