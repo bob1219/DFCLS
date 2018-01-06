@@ -16,6 +16,8 @@ namespace dfcls
 	static const std::size_t	FORMAT_MAX		= 100;
 	static const std::size_t	COMMAND_NUMBER_MAX	= 10;
 	static const std::size_t	COMMAND_MAX		= 200;
+	static const std::size_t	FILE_SIZE_MAX		= 102400;
+	static const std::size_t	DATE_MAX		= 5;
 }
 
 #endif
