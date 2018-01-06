@@ -225,7 +225,7 @@ bool command::rename(int CommandNumber, const string &oldname, const string &new
 {
 	if(CommandNumber < 3)goto rename_error;
 
-	if(!rename(oldname, newname))
+	if(!rename(oldname.c_str(), newname.c_str()))
 	{
 		if(WriteLog)
 		{
