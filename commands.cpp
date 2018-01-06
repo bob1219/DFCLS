@@ -413,7 +413,7 @@ bool command::date()
 		break;
 	}
 
-	cout << month << " " << date << ", " << local->tm_year + 1900 << endl;
+	printf("%s %s, %d\n", month.c_str(), date, local->tm_year + 1900);
 	return true;
 }
 
