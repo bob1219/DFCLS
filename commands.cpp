@@ -422,7 +422,7 @@ bool command::time()
 	time_t		timer	= time(NULL);
 	struct tm	*local	= localtime(&timer);
 
-	printf("%02d:%02d:%02d", local->tm_hour, local->tm_min, local->tm_sec);
+	printf("%02d:%02d:%02d\n", local->tm_hour, local->tm_min, local->tm_sec);
 	return true;
 }
 
