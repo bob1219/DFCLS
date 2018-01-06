@@ -13,9 +13,9 @@ using namespace dfcls;
 
 bool CommandProcess(const string &command)
 {
-	char commands_c[COMMAND_NUMBER_MAX][COMMAND_MAX];
 	char format[FORMAT_MAX];
 	sprintf(format, "%%%us %%%us %%%us %%%us %%%us %%%us %%%us %%%us %%%us %%%us", COMMAND_MAX, COMMAND_MAX, COMMAND_MAX, COMMAND_MAX, COMMAND_MAX, COMMAND_MAX, COMMAND_MAX, COMMAND_MAX, COMMAND_MAX, COMMAND_MAX);
+	char commands_c[COMMAND_NUMBER_MAX][COMMAND_MAX];
 	int CommandNumber = sscanf(command.c_str(), format, commands_c[0], commands_c[1], commands_c[2], commands_c[3], commands_c[4], commands_c[5], commands_c[6], commands_c[7], commands_c[8], commands_c[9]);
 	string commands[COMMAND_NUMBER_MAX] = {
 		commands_c[0],
