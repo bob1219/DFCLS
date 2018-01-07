@@ -554,8 +554,7 @@ bool command::now()
 		break;
 	}
 
-	printf("%s %s, %d ", month.c_str(), date, local->tm_year + 1900);
-	printf("%02d:%02d:%02d\n", local->tm_hour, local->tm_min, local->tm_sec);
+	printf("%s %s, %04d %02d:%02d:%02d\n", month.c_str(), date, local->tm_year + 1900, local->tm_hour, local->tm_min, local->tm_sec);
 
 	return true;
 }
