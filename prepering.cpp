@@ -27,7 +27,7 @@ namespace dfcls
 		char SettingFileName[FILENAME_MAX];
 		sprintf(SettingFileName, ".%cSETTING", PATH_BREAK_CHARACTER);
 		ifstream ifs(SettingFileName);
-		if(ifs.fail())return false;
+		if(ifs.fail())return true; // If setting file is not found, use default value. So, return success value.
 
 		string	line;
 		string	SettingName, SettingContent;
