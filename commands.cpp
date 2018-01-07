@@ -322,7 +322,14 @@ bool command::bview(int CommandNumber, const string &filename)
 		size_t byte = ifs.read(buf, (sizeof(buf) / sizeof(char))).gcount();
 
 		for(unsigned int i = 0 ; i < byte ; i++)
-			printf("%02X", buf[i]);
+		{
+			if(i == 0)
+				printf("%02X", buf[i]);
+			else
+				printf("-%02X", buf[i]);
+		}
+
+		cout << endl;
 	}
 	catch(...)
 	{
