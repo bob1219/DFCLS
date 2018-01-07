@@ -5,7 +5,6 @@
 #include <fstream>
 #include <iostream>
 #include <cstddef>
-#include <algorithm>
 #include <ctime>
 #include <dirent.h>
 
@@ -289,7 +288,7 @@ bool command::tview(int CommandNumber, const string &filename)
 
 		string line;
 		for(unsigned int i = 1 ; getline(ifs, line) ; i++)
-			cout << i << ":\t" << line << "\n";
+			cout << i << ":\t" << line << endl;
 	}
 	catch(...)
 	{
