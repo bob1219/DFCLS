@@ -460,7 +460,7 @@ bool command::date()
 		break;
 	}
 
-	printf("%s %s, %d\n", month.c_str(), date, local->tm_year + 1900);
+	printf("%s %s, %04d\n", month.c_str(), date, local->tm_year + 1900);
 	return true;
 }
 
