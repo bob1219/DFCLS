@@ -4,7 +4,6 @@
 #include <iostream>
 #include <fstream>
 #include <ctime>
-#include <sstream>
 
 // Header
 #include "class.h"
