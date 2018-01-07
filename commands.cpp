@@ -136,7 +136,7 @@ bool command::mfile(int CommandNumber, const string &filename)
 	{
 		if(CommandNumber < 2)throw 1;
 
-		fstream fs(filename, ios_base::trunc);
+		ofstream fs(filename);
 		if(fs.fail())throw 1;
 	}
 	catch(...)
