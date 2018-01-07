@@ -7,6 +7,7 @@
 #include <cstddef>
 #include <ctime>
 #include <dirent.h>
+#include <cstdlib>
 
 // Header
 #include "class.h"
@@ -354,14 +355,9 @@ bool command::app(int CommandNumber, const string *commands)
 	{
 		if(CommandNumber < 2 || !system(NULL))throw 1;
 
-		string command;
-		for(unsigned int i = 1 ; i < CommandNumber ; i++)
-		{
-			if(i == 1)
-				command = commands[1];
-			else
-				command += " " + commands[i];
-		}
+		string command = commands[1];
+		for(unsigned int i = 2 ; i < CommandNumber ; i++)
+			command += " " + commands[i];
 
 		int ret = system(command.c_str());
 		cout << "Return value: " << ret << endl;
