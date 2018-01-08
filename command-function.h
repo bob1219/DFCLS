@@ -4,6 +4,7 @@
 // Standard Library
 #include <string>
 #include <iostream>
+#include <cstdio>
 
 // Header
 #include "constant.h"
@@ -36,6 +37,13 @@ namespace dfcls
 		bool date();
 		bool time();
 		bool now();
+
+		inline bool pause()
+		{
+			std::cout << "Press ENTER key to continue..." << std::endl;
+			std::getchar();
+			return true;
+		}
 
 		inline bool version()
 		{
