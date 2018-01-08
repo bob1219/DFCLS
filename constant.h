@@ -8,7 +8,7 @@
 namespace dfcls
 {
 	static const char		PATH_BREAK_CHARACTER	= '\\';
-	static const std::string	VERSION			= "1.0";
+	static const std::string	VERSION			= "2.0";
 	static const std::size_t	SETTING_NAME_MAX	= 13;
 	static const std::size_t	SETTING_CONTENT_MAX	= 200;
 	static const std::size_t	FORMAT_MAX		= 100;
