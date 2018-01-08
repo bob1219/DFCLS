@@ -320,8 +320,8 @@ bool command::bview(int CommandNumber, const string &filename)
 		ifstream ifs(filename, ios_base::in | ios_base::binary);
 		if(ifs.fail())throw 1;
 
-		char buf[FILE_SIZE_MAX];
-		size_t byte = ifs.read(buf, (sizeof(buf) / sizeof(char))).gcount();
+		unsigned char	buf[FILE_SIZE_MAX];
+		size_t		byte = ifs.read(reinterpret_cast<char*>(buf), (sizeof(buf) / sizeof(char))).gcount();
 
 		cout << "\t" << "+0 +1 +2 +3 +4 +5 +6 +7 +8 +9 +A +B +C +D +E +F 0123456789ABCDEF" << endl;
 
