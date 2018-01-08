@@ -72,6 +72,8 @@ namespace dfcls
 			exit(EXIT_SUCCESS);
 		else if(commands[0] == "pause")
 			return command::pause();
+		else if(commands[0] == "script")
+			return script(commands[1]);
 		else
 		{
 			cerr << "Error: Unknown command \"" << commands[0] << "\"." << endl;
