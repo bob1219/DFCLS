@@ -123,7 +123,21 @@ commands
 	Exit DFCLS  
 	Usage: `exit`
 
+	* pause  
+	pause  
+	Usage: `pause`
+
+	* script  
+	Run a DFCLS script  
+	Usage: `script [filename]`
+
 History
 -------
 * 1.0 (January 8th, 2018)
 	* First version
+
+* 2.0 (January 8th, 2018)
+	* Modify bview command
+	* Addition pause command
+	* Addition DFCLS script
+	* Addition script command

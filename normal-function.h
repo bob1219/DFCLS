@@ -15,6 +15,7 @@ namespace dfcls
 	bool prepering();
 	void CommandLine();
 	bool CommandProcess(const std::string &command);
+	bool script(const std::string &filename);
 
 	inline void welcome()
 	{

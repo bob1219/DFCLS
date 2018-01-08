@@ -7,6 +7,7 @@
 // Header
 #include "constant.h"
 #include "command-function.h"
+#include "normal-function.h"
 
 using namespace std;
 
@@ -70,6 +71,10 @@ namespace dfcls
 			return command::now();
 		else if(commands[0] == "exit")
 			exit(EXIT_SUCCESS);
+		else if(commands[0] == "pause")
+			return command::pause();
+		else if(commands[0] == "script")
+			return script(commands[1]);
 		else
 		{
 			cerr << "Error: Unknown command \"" << commands[0] << "\"." << endl;

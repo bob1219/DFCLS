@@ -8,6 +8,7 @@
 #include <ctime>
 #include <dirent.h>
 #include <cstdlib>
+#include <cctype>
 
 // Header
 #include "class.h"
@@ -321,15 +322,21 @@ bool command::bview(int CommandNumber, const string &filename)
 		char buf[FILE_SIZE_MAX];
 		size_t byte = ifs.read(buf, (sizeof(buf) / sizeof(char))).gcount();
 
-		for(unsigned int i = 0 ; i < byte ; i++)
+		int line_start;
+		for(unsigned int i = 0 ; i < (byte / 10 + 1) ; i++)
 		{
-			if(i == 0)
-				printf("%02X", buf[i]);
-			else
-				printf("-%02X", buf[i]);
-		}
+			cout << i << ":\t";
+			
+			line_start = 10 * i;
+			
+			for(unsigned int j = 0 ; j < 10 ; j++)
+				printf("%02X ", buf[line_start + j]);
 
-		cout << endl;
+			for(unsigned int k = 0 ; k < 10 ; k++)
+				printf("%c", (isprint(static_cast<int>(buf[line_start + k]))) ? buf[line_start + k] : '.');
+
+			cout << endl;
+		}
 	}
 	catch(...)
 	{
