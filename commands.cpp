@@ -327,7 +327,7 @@ bool command::bview(int CommandNumber, const string &filename)
 		{
 			cout << i << ":\t";
 			
-			line_start = 10 * (i - 1);
+			line_start = 10 * i;
 			
 			for(unsigned int j = 0 ; j < 10 ; j++)
 				printf("%02X ", buf[line_start + j]);
