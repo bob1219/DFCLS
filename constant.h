@@ -17,6 +17,7 @@ namespace dfcls
 	static const std::size_t	FILE_SIZE_MAX		= 102400;
 	static const std::size_t	DATE_MAX		= 5;
 	static const std::size_t	MESSAGE_MAX		= 1000;
+	static const int		BVIEW_PRINT_BYTE_MAX	= 16;
 }
 
 #endif
