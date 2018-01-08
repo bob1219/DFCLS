@@ -141,3 +141,6 @@ History
 	* Addition pause command
 	* Addition DFCLS script
 	* Addition script command
+
+* 2.1 (January 8th, 2018)
+	* Modify bview command
