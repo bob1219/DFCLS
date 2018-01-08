@@ -571,11 +571,12 @@ bool command::now()
 
 bool command::find(int CommandNumber, const string &filename)
 {
+	string reg;
+
 	try
 	{
 		if(CommandNumber < 2)throw 1;
 
-		string reg;
 		cout << "regex: ";
 		getline(cin, reg);
 

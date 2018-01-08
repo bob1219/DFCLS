@@ -144,3 +144,6 @@ History
 
 * 2.1 (January 8th, 2018)
 	* Modify bview command
+
+* 3.0 (January 8th, 2018)
+	* Addition find command
