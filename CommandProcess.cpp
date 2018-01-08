@@ -75,6 +75,8 @@ namespace dfcls
 			return command::pause();
 		else if(commands[0] == "script")
 			return script(commands[1]);
+		else if(commands[0] == "find")
+			return command::find(CommandNumber, commands[1]);
 		else
 		{
 			cerr << "Error: Unknown command \"" << commands[0] << "\"." << endl;
