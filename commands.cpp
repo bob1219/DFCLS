@@ -322,17 +322,19 @@ bool command::bview(int CommandNumber, const string &filename)
 		char buf[FILE_SIZE_MAX];
 		size_t byte = ifs.read(buf, (sizeof(buf) / sizeof(char))).gcount();
 
+		cout << "\t" << "+0 +1 +2 +3 +4 +5 +6 +7 +8 +9 +A +B +C +D +E +F 0123456789ABCDEF" << endl;
+
 		int line_start;
-		for(unsigned int i = 0 ; i < (byte / 10 + 1) ; i++)
+		for(unsigned int i = 0 ; i < (byte / BVIEW_PRINT_BYTE_MAX + 1) ; i++)
 		{
-			cout << i << ":\t";
+			line_start = BVIEW_PRINT_BYTE_MAX * i;
+
+			printf("%X:\t", line_start);
 			
-			line_start = 10 * i;
-			
-			for(unsigned int j = 0 ; j < 10 ; j++)
+			for(unsigned int j = 0 ; j < BVIEW_PRINT_BYTE_MAX ; j++)
 				printf("%02X ", buf[line_start + j]);
 
-			for(unsigned int k = 0 ; k < 10 ; k++)
+			for(unsigned int k = 0 ; k < BVIEW_PRINT_BYTE_MAX ; k++)
 				printf("%c", (isprint(static_cast<int>(buf[line_start + k]))) ? buf[line_start + k] : '.');
 
 			cout << endl;
