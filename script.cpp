@@ -7,21 +7,23 @@
 #include "normal-function.h"
 
 using namespace std;
-using namespace dfcls;
 
-bool script(const string &filename)
+namespace dfcls
 {
-	ifstream ifs(filename);
-	if(ifs.fail())return false;
-
-	string line;
-	for(unsigned int i = 1 ; getline(ifs, line) ; i++)
+	bool script(const string &filename)
 	{
-		if(CommandProcess(line))
-			cout << "Succeeded in line " << i << "." << endl;
-		else
-			cerr << "Failed in line " << i << "." << endl;
-	}
+		ifstream ifs(filename);
+		if(ifs.fail())return false;
 
-	return true;
+		string line;
+		for(unsigned int i = 1 ; getline(ifs, line) ; i++)
+		{
+			if(CommandProcess(line))
+				cout << "Succeeded in line " << i << "." << endl;
+			else
+				cerr << "Failed in line " << i << "." << endl;
+		}
+
+		return true;
+	}
 }

@@ -7,6 +7,7 @@
 // Header
 #include "constant.h"
 #include "command-function.h"
+#include "normal-function.h"
 
 using namespace std;
 
