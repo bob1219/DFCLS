@@ -18,11 +18,11 @@ string LogProcess::filename = "";
 bool LogProcess::init()
 {
 	char filename_c[FILENAME_MAX];
-	sprintf(filename_c, "%s%cDFCLS.log", LogDirectory, PATH_BREAK_CHARACTER);
+	sprintf(filename_c, "%s%cDFCLS.log", LogDirectory.c_str(), PATH_BREAK_CHARACTER);
 	filename = filename_c;
 
-	fstream fs(filename, ios_base::trunc);
-	if(fs.fail())return false;
+	ofstream ofs(filename);
+	if(ofs.fail())return false;
 
 	return true;
 }
@@ -39,5 +39,7 @@ void LogProcess::write(const string &type, const string &message)
 	// write
 	time_t		timer = time(NULL);
 	struct tm	*local = localtime(&timer);
-	printf("[%02d/%02d/%d %02d:%02d:%02d][%s]%s.\n", local->tm_mon + 1, local->tm_mday, local->tm_year + 1900, local->tm_hour, local->tm_min, local->tm_sec, type.c_str(), message.c_str());
+	char		str[MESSAGE_MAX];
+	sprintf(str, "[%02d/%02d/%04d %02d:%02d:%02d][%s]%s", local->tm_mon + 1, local->tm_mday, local->tm_year + 1900, local->tm_hour, local->tm_min, local->tm_sec, type.c_str(), message.c_str());
+	ofs << str << endl;
 }

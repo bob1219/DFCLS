@@ -4,22 +4,26 @@
 
 // Header
 #include "normal-function.h"
+#include "extern.h"
 
 using namespace std;
-using namespace dfcls;
 
-void CommandLine()
+namespace dfcls
 {
-	string command;
-
-	while(true)
+	void CommandLine()
 	{
-		getline(cin, command);
-		if(CommandLine(command))
-			cout << "succeeded." << endl;
-		else
-			cerr << "failed." << endl;
+		string command;
 
-		cout << endl;
+		while(true)
+		{
+			cout << prompt;
+			getline(cin, command);
+			if(CommandProcess(command))
+				cout << "succeeded." << endl;
+			else
+				cerr << "failed." << endl;
+
+			cout << endl;
+		}
 	}
 }

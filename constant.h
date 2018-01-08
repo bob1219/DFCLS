@@ -8,7 +8,6 @@
 namespace dfcls
 {
 	static const char		PATH_BREAK_CHARACTER	= '\\';
-	static const std::size_t	DATE_MAX		= 22;
 	static const std::string	VERSION			= "1.0";
 	static const std::size_t	SETTING_NAME_MAX	= 13;
 	static const std::size_t	SETTING_CONTENT_MAX	= 200;
@@ -17,6 +16,7 @@ namespace dfcls
 	static const std::size_t	COMMAND_MAX		= 200;
 	static const std::size_t	FILE_SIZE_MAX		= 102400;
 	static const std::size_t	DATE_MAX		= 5;
+	static const std::size_t	MESSAGE_MAX		= 1000;
 }
 
 #endif
