@@ -37,6 +37,7 @@ namespace dfcls
 		bool date();
 		bool time();
 		bool now();
+		bool find(int CommandNumber, const std::string &filename);
 
 		inline bool pause()
 		{

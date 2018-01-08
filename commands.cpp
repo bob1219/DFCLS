@@ -9,6 +9,7 @@
 #include <dirent.h>
 #include <cstdlib>
 #include <cctype>
+#include <regex>
 
 // Header
 #include "class.h"
@@ -565,5 +566,43 @@ bool command::now()
 
 	printf("%s %s, %04d %02d:%02d:%02d\n", month.c_str(), date, local->tm_year + 1900, local->tm_hour, local->tm_min, local->tm_sec);
 
+	return true;
+}
+
+bool command::find(int CommandNumber, const string &filename)
+{
+	string reg;
+
+	try
+	{
+		if(CommandNumber < 2)throw 1;
+
+		cout << "regex: ";
+		getline(cin, reg);
+
+		ifstream ifs(filename);
+		if(ifs.fail())throw 1;
+
+		string line;
+		smatch result;
+		for(unsigned int i = 1 ; getline(ifs, line) ; i++)
+			if(regex_search(line, result, regex(reg)))
+				cout << "Match in line " << i << " (\"" << result.str() << "\" ; \"" << line << "\")" << endl;
+	}
+	catch(...)
+	{
+		if(WriteLog)
+		{
+			LogProcess log;
+			log.write("error", "Failed find a regex");
+		}
+		return false;
+	}
+
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("info", "Found a regex \"" + reg + "\" in a file \"" + filename + "\"");
+	}
 	return true;
 }
