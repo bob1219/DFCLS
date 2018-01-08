@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	}
 	cout << "Done." << endl;
 
-	if(argc >= 2)
+	if(argc == 2)
 	{
 		if(script(argv[1]))
 		{
