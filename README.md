@@ -131,6 +131,14 @@ commands
 	Run a DFCLS script  
 	Usage: `script [filename]`
 
+	* find  
+	Find a regex in a file  
+	Usage: `find [filename]`
+
+	* diff  
+	Print difference of 2 files  
+	Usage: `diff [filename1] [filename2]`
+
 History
 -------
 * 1.0 (January 8th, 2018)
@@ -150,3 +158,6 @@ History
 
 * 3.1 (January 8th, 2018)
 	* Bugfix bview command
+
+* 4.0 (January 9th, 2018)
+	* Addition diff command

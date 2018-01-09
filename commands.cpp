@@ -606,3 +606,47 @@ bool command::find(int CommandNumber, const string &filename)
 	}
 	return true;
 }
+
+bool command::diff(int CommandNumber, const string &filename1, const string &filename2)
+{
+	try
+	{
+		if(CommandNumber < 3)throw 1;
+
+		ifstream a_ifs(filename1), b_ifs(filename2);
+		if(a_ifs.fail() || b_ifs.fail())
+			throw 1;
+
+		cout << "a: " << filename1 << endl;
+		cout << "b: " << filename2 << endl;
+		cout << endl;
+
+		string a_line, b_line;
+		for(unsigned int i = 1 ; (getline(a_ifs, a_line) && getline(b_ifs, b_line)) ; i++)
+		{
+			if(a_line == b_line)
+				cout << "\t" << i << ":\t" << a_line << endl;
+			else
+			{
+				cout << "a\t" << i << ":\t" << a_line << endl;
+				cout << "b\t" << i << ":\t" << b_line << endl;
+			}
+		}
+	}
+	catch(...)
+	{
+		if(WriteLog)
+		{
+			LogProcess log;
+			log.write("error", "Failed print difference of 2 files");
+		}
+		return false;
+	}
+
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("info", "Printed difference of 2 files \"" + filename1 + "\" and \"" + filename2 + "\"");
+	}
+	return true;
+}
