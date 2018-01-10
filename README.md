@@ -161,3 +161,6 @@ History
 
 * 4.0 (January 9th, 2018)
 	* Addition diff command
+
+* 4.1 (January 10th, 2018)
+	* Bugfix diff command

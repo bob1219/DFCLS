@@ -622,11 +622,20 @@ bool command::diff(int CommandNumber, const string &filename1, const string &fil
 		cout << endl;
 
 		string a_line, b_line;
-		for(unsigned int i = 1 ; (getline(a_ifs, a_line) && getline(b_ifs, b_line)) ; i++)
+		for(unsigned int i = 1 ;; i++)
 		{
+			getline(a_ifs, a_line);
+			getline(b_ifs, b_line);
+
+			if(a_ifs.fail() && b_ifs.fail())break;
+
 			if(a_line == b_line)
 				cout << "\t" << i << ":\t" << a_line << endl;
-			else
+			else if(a_ifs.good() && b_ifs.eof())
+				cout << "a\t" << i << ":\t" << a_line << endl;
+			else if(b_ifs.good() && a_ifs.eof())
+				cout << "b\t" << i << ":\t" << b_line << endl;
+			else if(a_line != b_line)
 			{
 				cout << "a\t" << i << ":\t" << a_line << endl;
 				cout << "b\t" << i << ":\t" << b_line << endl;
