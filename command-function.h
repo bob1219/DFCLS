@@ -39,6 +39,7 @@ namespace dfcls
 		bool now();
 		bool find(int CommandNumber, const std::string &filename);
 		bool diff(int CommandNumber, const std::string &filename1, const std::string &filename2);
+		bool config(int CommandNumber, const std::string &SettingName, const std::string &SettingContent);
 
 		inline bool pause()
 		{

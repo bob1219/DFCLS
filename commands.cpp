@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <cctype>
 #include <regex>
+#include <cstring>
 
 // Header
 #include "class.h"
@@ -656,6 +657,60 @@ bool command::diff(int CommandNumber, const string &filename1, const string &fil
 	{
 		LogProcess log;
 		log.write("info", "Printed difference of 2 files \"" + filename1 + "\" and \"" + filename2 + "\"");
+	}
+	return true;
+}
+
+bool config(int CommandNumber, const string &SettingName, const string &SettingContent)
+{
+	try
+	{
+		if(CommandNumber < 3)throw 1;
+
+		if(SettingName == "LogDirectory")
+		{
+			char LogDirectory_c[FILENAME_MAX] = SettingContent.c_str();
+			if(LogDirectory_c[strlen(LogDirectory_c) - 1] == PATH_BREAK_CHARACTER)
+				LogDirectory_c[strlen(LogDirectory_c) - 1] = '\0';
+			LogDirectory = LogDirectory_c;
+		}
+		else if(SettingName == "prompt")
+			prompt = SettingContent;
+		else if(SettingName == "WriteLog")
+		{
+			if(SettingContent == "true")
+				WriteLog = true;
+			else if(SettingContent == "false")
+				WriteLog = false;
+			else
+				throw 1;
+		}
+		else
+			throw 1;
+
+		char SettingFileName[FILENAME_MAX];
+		sprintf(SettingFileName, ".%cSETTING", PATH_BREAK_CHARACTER);
+		ofstream ofs(SettingFileName);
+		if(ofs.fail())throw 1;
+
+		ofs << "LogDirectory=" << LogDirectory << endl;
+		ofs << "prompt=" << prompt << endl;
+		ofs << "WriteLog=" << WriteLog << endl;
+	}
+	catch(...)
+	{
+		if(WriteLog)
+		{
+			LogProcess log;
+			log.write("error", "Failed configure");
+		}
+		return false;
+	}
+
+	if(WriteLog)
+	{
+		LogProcess log;
+		log.write("info", "Configured setting \"" + SettingName + "\" to \"" + SettingContent + "\"");
 	}
 	return true;
 }
