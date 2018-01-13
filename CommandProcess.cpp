@@ -3,6 +3,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
+#include <regex>
+#include <cstring>
 
 // Header
 #include "constant.h"
@@ -21,6 +23,33 @@ namespace dfcls
 		sprintf(format, "%%%us %%%us %%%us %%%us %%%us %%%us %%%us %%%us %%%us %%%us", COMMAND_MAX, COMMAND_MAX, COMMAND_MAX, COMMAND_MAX, COMMAND_MAX, COMMAND_MAX, COMMAND_MAX, COMMAND_MAX, COMMAND_MAX, COMMAND_MAX);
 		int CommandNumber = sscanf(command.c_str(), format, commands_c[0], commands_c[1], commands_c[2], commands_c[3], commands_c[4], commands_c[5], commands_c[6], commands_c[7], commands_c[8], commands_c[9]);
 
+		if(CommandNumber == EOF)
+			return false;
+
+		for(unsigned int i = 0 ; i < COMMAND_NUMBER_MAX ; i++)
+		{
+			if(regex_match(commands_c[i], regex("\".*")))
+			{
+				sscanf(commands_c[i], "\"%s", commands_c[i]);
+				unsigned int j = i + 1;
+				for(; !regex_match(commands_c[i], regex(".*\"")) ; j++)
+				{
+					if((strlen(commands_c[i]) + 1 + strlen(commands_c[j])) > COMMAND_MAX)
+						return false;
+					sprintf(commands_c[i], "%s %s", commands_c[i], commands_c[j]);
+					CommandNumber--;
+				}
+
+				sscanf(commands_c[j], "%s\"", commands_c[j]);
+				if((strlen(commands_c[i]) + 1 + strlen(commands_c[j])) > COMMAND_MAX)
+					return false;
+				sprintf(commands_c[i], "%s %s", commands_c[i], commands_c[j]);
+				CommandNumber--;
+				
+				i += j - i;
+			}
+		}
+
 		string commands[COMMAND_NUMBER_MAX] = {
 			commands_c[0],
 			commands_c[1],
@@ -33,9 +62,6 @@ namespace dfcls
 			commands_c[8],
 			commands_c[9]
 		};
-
-		if(CommandNumber == EOF)
-			return false;
 
 		if(commands[0] == "mdir")
 			return command::mdir(CommandNumber, commands[1]);
