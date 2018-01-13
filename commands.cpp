@@ -685,8 +685,7 @@ bool config(int CommandNumber, const string &SettingName, const string &SettingC
 			else
 				throw 1;
 		}
-		else
-			throw 1;
+		else throw 1;
 
 		char SettingFileName[FILENAME_MAX];
 		sprintf(SettingFileName, ".%cSETTING", PATH_BREAK_CHARACTER);
