@@ -661,7 +661,7 @@ bool command::diff(int CommandNumber, const string &filename1, const string &fil
 	return true;
 }
 
-bool config(int CommandNumber, const string &SettingName, const string &SettingContent)
+bool command::config(int CommandNumber, const string &SettingName, const string &SettingContent)
 {
 	try
 	{
@@ -669,7 +669,9 @@ bool config(int CommandNumber, const string &SettingName, const string &SettingC
 
 		if(SettingName == "LogDirectory")
 		{
-			char LogDirectory_c[FILENAME_MAX] = SettingContent.c_str();
+			char LogDirectory_c[FILENAME_MAX];
+			strcpy(LogDirectory_c, SettingContent.c_str());
+
 			if(LogDirectory_c[strlen(LogDirectory_c) - 1] == PATH_BREAK_CHARACTER)
 				LogDirectory_c[strlen(LogDirectory_c) - 1] = '\0';
 			LogDirectory = LogDirectory_c;
